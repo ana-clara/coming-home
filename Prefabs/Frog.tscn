@@ -1,0 +1,150 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/PNG/Enemies/frog.png" type="Texture" id=1]
+[ext_resource path="res://Assets/PNG/Enemies/frog_move.png" type="Texture" id=2]
+[ext_resource path="res://Assets/PNG/Enemies/frog_dead.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Hitbox-enemy.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Worm.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "dead"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "dead" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "jump" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 32.7144
+height = 4.47696
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 32.4497
+height = 9.25139
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 2.78565, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 12.0721, 29.4129 )
+
+[node name="Frog" type="KinematicBody2D" groups=[
+"Enemy",
+]]
+script = ExtResource( 5 )
+SPEED = 4000
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "jump"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+anims/dead = SubResource( 2 )
+anims/walk = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -5.13358, 27.4713 )
+shape = SubResource( 4 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( -4.78603, 34.5878 )
+shape = SubResource( 5 )
+
+[node name="Sensors" type="Node2D" parent="."]
+
+[node name="FallSensor" type="Area2D" parent="Sensors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensors/FallSensor"]
+position = Vector2( -67.7763, 66.3748 )
+shape = SubResource( 6 )
+
+[node name="WalkSensor" type="Area2D" parent="Sensors"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensors/WalkSensor"]
+position = Vector2( -57.463, 28.6131 )
+shape = SubResource( 7 )
+
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_entered"]
+[connection signal="body_exited" from="Sensors/FallSensor" to="." method="_on_FallSensor_body_exited"]
+[connection signal="body_entered" from="Sensors/WalkSensor" to="." method="_on_WalkSensor_body_entered"]

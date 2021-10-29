@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/PNG/Backgrounds/colored_land.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Kenney Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scripts/GameOver.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 6
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+outline_size = 4
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+outline_size = 3
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+outline_size = 3
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 3 )
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 374.063, 146.834 )
+texture = ExtResource( 1 )
+
+[node name="GameOver" type="Label" parent="."]
+margin_left = 132.901
+margin_top = 81.4252
+margin_right = 675.901
+margin_bottom = 176.425
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TryAgain" type="Label" parent="."]
+margin_left = 243.023
+margin_top = 367.897
+margin_right = 555.023
+margin_bottom = 418.897
+custom_fonts/font = SubResource( 2 )
+text = "TRY AGAIN?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Yes" type="Button" parent="Buttons"]
+margin_left = 252.378
+margin_top = 470.0
+margin_right = 352.378
+margin_bottom = 520.0
+custom_fonts/font = SubResource( 3 )
+text = "YES"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="No" type="Button" parent="Buttons"]
+margin_left = 452.378
+margin_top = 470.0
+margin_right = 552.378
+margin_bottom = 520.0
+custom_fonts/font = SubResource( 4 )
+text = "NO"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Buttons/Yes" to="." method="_on_Yes_pressed"]
+[connection signal="pressed" from="Buttons/No" to="." method="_on_No_pressed"]

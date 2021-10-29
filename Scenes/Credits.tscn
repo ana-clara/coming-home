@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Prefabs/font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Kenney Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/PNG/Backgrounds/colored_shroom.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Credits.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+outline_size = 4
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_size = 4
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 2 )
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 385.343, 147.424 )
+scale = Vector2( 0.888133, 0.951663 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -100.0
+margin_top = 100.0
+margin_right = 100.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 1 )
+text = "CREDITS"
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -372.5
+margin_top = 50.0
+margin_right = 372.5
+margin_bottom = 46.5
+custom_fonts/font = ExtResource( 1 )
+text = "GAME BY
+ANA CLARA MEDINA FONSECA"
+align = 1
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -53.5
+margin_top = -80.0
+margin_right = 53.5
+custom_fonts/font = SubResource( 2 )
+text = "BACK"
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

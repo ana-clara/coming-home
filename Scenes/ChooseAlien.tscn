@@ -1,0 +1,182 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Prefabs/font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/PNG/Backgrounds/colored_land.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/ChooseAlien.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Kenney Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/PNG/HUD/hudPlayer_blue.png" type="Texture" id=5]
+[ext_resource path="res://Assets/PNG/HUD/hudPlayer_green.png" type="Texture" id=6]
+[ext_resource path="res://Assets/PNG/HUD/hudPlayer_beige.png" type="Texture" id=7]
+[ext_resource path="res://Assets/PNG/HUD/hudPlayer_pink.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+outline_size = 4
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+outline_size = 3
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+outline_size = 3
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
+outline_size = 3
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+outline_size = 3
+outline_color = Color( 0.380392, 0.380392, 0.380392, 1 )
+extra_spacing_top = 5
+extra_spacing_char = 5
+font_data = ExtResource( 4 )
+
+[node name="ChooseAlien" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 409.087, 107.029 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 93.8954
+margin_top = 62.3784
+margin_right = 718.895
+margin_bottom = 120.378
+custom_fonts/font = SubResource( 1 )
+text = "Choose Your Alien"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Green" type="Node" parent="."]
+
+[node name="Green" type="Button" parent="Green"]
+margin_left = 37.5102
+margin_top = 300.0
+margin_right = 177.51
+margin_bottom = 436.0
+custom_fonts/font = ExtResource( 1 )
+icon = ExtResource( 6 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Green"]
+margin_left = 13.6326
+margin_top = 432.48
+margin_right = 206.633
+margin_bottom = 501.48
+custom_fonts/font = SubResource( 2 )
+text = "Peter
+Pistachio"
+align = 1
+
+[node name="Blue" type="Node" parent="."]
+
+[node name="Blue" type="Button" parent="Blue"]
+margin_left = 230.0
+margin_top = 300.0
+margin_right = 371.388
+margin_bottom = 438.245
+icon = ExtResource( 5 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Blue"]
+margin_left = 215.04
+margin_top = 435.0
+margin_right = 395.04
+margin_bottom = 504.0
+custom_fonts/font = SubResource( 3 )
+text = "Raindrop
+George"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pink" type="Node" parent="."]
+
+[node name="Pink" type="Button" parent="Pink"]
+margin_left = 436.3
+margin_top = 300.0
+margin_right = 576.3
+margin_bottom = 438.0
+icon = ExtResource( 8 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Pink"]
+margin_left = 397.48
+margin_top = 436.26
+margin_right = 628.48
+margin_bottom = 505.26
+custom_fonts/font = SubResource( 4 )
+text = "Strawberry
+Jim"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Beige" type="Button" parent="Node"]
+margin_left = 631.339
+margin_top = 300.0
+margin_right = 771.339
+margin_bottom = 438.0
+icon = ExtResource( 7 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Node"]
+margin_left = 647.56
+margin_top = 436.26
+margin_right = 762.56
+margin_bottom = 505.26
+custom_fonts/font = SubResource( 5 )
+text = "Honey
+Joey"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Green/Green" to="." method="_on_Green_pressed"]
+[connection signal="pressed" from="Blue/Blue" to="." method="_on_Blue_pressed"]
+[connection signal="pressed" from="Pink/Pink" to="." method="_on_Pink_pressed"]
+[connection signal="pressed" from="Node/Beige" to="." method="_on_Beige_pressed"]
